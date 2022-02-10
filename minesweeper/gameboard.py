@@ -14,7 +14,6 @@ class GameBoard:
         self.size_y = size_y
         self.grid = [list(GameBoard.EMPTY for _ in range(size_x)) for _ in range(size_y)]
         self.clear = [list(GameBoard.HIDDEN for _ in range(size_x)) for _ in range(size_y)]
-        self.near_bombs = [list(0 for _ in range(size_x)) for _ in range(size_y)]
 
         bombs_options = [(x, y) for x in range(size_x) for y in range(size_y)]
         for x, y in random.sample(bombs_options, num_bombs):
@@ -56,7 +55,6 @@ class GameBoard:
 
             bombs = self.count_bombs(*tile)
             self.clear[tile[1]][tile[0]] = GameBoard.CLEAR
-            self.near_bombs[tile[1]][tile[0]] = bombs
 
             if bombs == 0:
                 next_to_check = [(a, b)
